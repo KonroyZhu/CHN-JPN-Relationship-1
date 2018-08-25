@@ -44,6 +44,32 @@ def insert(newsList,tableName,keyword):
 #             'comments':'这是评论','comTime':'2018-8-31 20:00'}],"sohu")
 
 
+def operate_with_sql(sql):
+    """
+    :param sql:执行指定的sql语句(没有返回值的操作)
+    :return:
+    """
+
+    # 数据库连接字符串
+    conn = pymysql.connect(host='YOUR MYSQL HOSTNAME',
+                                 port=3306,
+                                 user='YOUR MYSQL USERNAME',
+                                 password='YOUR MYSQL USER PASSWORD',
+                                 db='YOUR MYSQL DATABASE NAME',
+                                 charset='utf8',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    cursor = conn.cursor()    #通过cursor创建游标
+
+    try:
+        cursor.execute(sql)
+        conn.commit()#提交
+    except Exception as ex:
+        print(ex)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 
 def selectAll(tableName):
     """
