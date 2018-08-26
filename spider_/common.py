@@ -1,4 +1,4 @@
-import datetime
+import datetime,time
 import re
 import requests
 
@@ -27,7 +27,7 @@ def get_content(url,regex_dict,encoding='utf-8',spliter="\n"):
     code=get_code(url,encoding=encoding)
     for key in regex_dict.keys():
         content_dict[key]={}
-        content_dict[key]=spliter.join(re.findall(pattern=regex_dict[key],string=code))
+        content_dict[key]=spliter.join(re.findall(pattern=regex_dict[key],string=code)) #'<meta property="og:title" content="(.*?)"/>'
     return content_dict
 
 def get_code(url,encoding='utf-8'):
@@ -77,6 +77,3 @@ def ms2date(ms):
     dateArray = datetime.datetime.utcfromtimestamp(timeStamp)
     otherStyleTime = dateArray.strftime("%Y--%m--%d %H:%M")
     return otherStyleTime
-
-def test():
-    print("this is a test.")

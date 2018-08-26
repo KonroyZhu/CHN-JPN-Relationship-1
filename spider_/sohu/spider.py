@@ -9,7 +9,7 @@ import re
 import time
 
 
-#from spider_.DBHelper import selectAll, insert
+from spider_.DBHelper import selectAll, insert
 from spider_.common import get_code, get_link, get_content, dict_print, ms2date
 
 
@@ -43,13 +43,13 @@ def craw_souhu(link_list,keyword="中日"):
 
         dict_print(content,mode="short")
 
-        if len(content["content"])>=30 & len(content["title"] )>= 1:
+        if len(content["content"])>=30 & len(content["title"])>= 1:
             result.append(content)
     #插入数据库
     print("INSERT#####################################################################################################",end="")
     print(result)
     print("共"+str(len(result))+"篇文章")
-    #insert(result,"sohu2",keyword=keyword)
+    insert(result,"sohu2",keyword=keyword)
     print("\n\n\n\n\n\n\n")
     time.sleep(3)
 

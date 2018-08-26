@@ -162,3 +162,4 @@ def GetURLGroupByPage(filename):
     f.close()
 
     return dict_list
+
